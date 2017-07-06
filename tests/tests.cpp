@@ -1,8 +1,8 @@
 #include "tests.h"
 
-TEST(Fail, Fail)
+TEST(Fail, BecauseOfMemoryLeak)
 {
-	ASSERT_EQ(1, 2);
+	int *a = new int;
 }
 
 int main(int argc, char **argv)
