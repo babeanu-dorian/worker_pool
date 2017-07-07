@@ -10,6 +10,7 @@ A group of threads executing tasks from a queue.
 ..* priority_task_queue
 
 #worker_pool:
+
 |Template Arguments|
 |:----------------:|
 |Name|Description|Requirements|Default|
