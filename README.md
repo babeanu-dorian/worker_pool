@@ -11,8 +11,8 @@ A group of threads executing tasks from a queue.
 
 #worker_pool:
 
-|Template Arguments|
-|:---:|:---:|:---:|:---:|
+|Template Arguments| | | |
+|:----:|:----:|:----:|:----:|
 |Name|Description|Requirements|Default|
 |:---:|:---:|:---:|:---:|
 |Functor|The type of a task (function pointer, callable etc.)|..* callable with 0 parameters <br> ..* move contructible <br> ..* move assignable| - |
