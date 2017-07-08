@@ -4,16 +4,84 @@
 # worker_pool
 A group of threads executing tasks from a queue.
 
-#Classes in the wp namespace:
-..* worker_pool
-..* priority_task
-..* priority_task_queue
+# Classes in the wp namespace:
+* worker_pool
+* priority_task
+* priority_task_queue
 
-#worker_pool:
+# worker_pool:
+<table align="center">
+  <tr>
+    <th>Template Argument</th>
+    <th>Description</th>
+    <th>Requirements</th>
+    <th>Default</th>
+  </tr>
+  <tr>
+    <td>Functor</td>
+    <td>The type of a task (function pointer, callable etc.)</td>
+    <td>
+      <ul>
+        <li>callable with 0 parameters</li>
+        <li>move contructible</li>
+        <li>move assignable</li>
+      </ul>
+    <td> - </td>
+  </tr>
+  <tr>
+    <td>Container</td>
+    <td>The container used to store the tasks</td>
+    <td>
+      <ul>
+        <li>container</li>
+        <li>element type is Functor</li>
+        <li>allows move insertion</li>
+        <li>container</li>
+        <li>element type is Functor</li>
+        <li>allows move insertion</li>
+        <li>allows access to at least one element through a non-const reference</li>
+        <li>allows removal of the accessible element</li>
+        <li>has a method <i>size_t size(void)</i> which returns the number of stored elements</li>
+        <li>has a method <i>bool empty(void)</i> which returns whether the container is empty or not</li>
+      </ul>
+    <td> std::queue &lt; Functor, std::list &lt; Functor &gt; &gt; </td>
+  </tr>
+  <tr>
+    <td>Next</td>
+    <td>Method for accessing a task in the container</td>
+    <td>
+      <ul>
+        <li>member function of Container</li>
+        <li>empty parameter list</li>
+        <li>returns an lvalue reference of type Functor</li>
+      </ul>
+    <td> &amp;Container::front </td>
+  </tr>
+  <tr>
+    <td>Pop</td>
+    <td>Method for removing the element accessed through Next</td>
+    <td>
+      <ul>
+        <li>member function of Container</li>
+        <li>empty parameter list</li>
+        <li>returns void</li>
+      </ul>
+    <td> &amp;Container::pop </td>
+  </tr>
+  <tr>
+    <td>Push</td>
+    <td>Method for inserting a task into the container</td>
+    <td>
+      <ul>
+        <li>member function of Container</li>
+        <li>takes an rvalue reference of type Functor as parameter</li>
+        <li>returns void</li>
+      </ul>
+    <td> &amp;Container::push </td>
+  </tr>
+</table>
 
-|Template Arguments| | | |
-|:----:|:----:|:----:|:----:|
-|Name|Description|Requirements|Default|
-|:---:|:---:|:---:|:---:|
-|Functor|The type of a task (function pointer, callable etc.)|..* callable with 0 parameters <br> ..* move contructible <br> ..* move assignable| - |
-|Container|The container used to store the tasks|..* container <br> ..*element type is Functor <br> ..* allows move insertion <br> ..* allows access to at least one element through a non-const reference <br> ..* allows deletion of the accessible element| std::queue< Functor, std::list<Functor> >|
+Public interface:
+* worker_pool(size_t nWorkers, Container &&container = Container());
+* Deleted copy and move constructors and assignment operators.
+* void push(Functor &&task);
