@@ -82,6 +82,19 @@ A group of threads executing tasks from a queue.
 </table>
 
 Public interface:
-* worker_pool(size_t nWorkers, Container &&container = Container());
+* worker_pool(size_t nWorkers, Container &&container = Container());<br>
+Constructor.<br>
+Parameters:
+  * nWorkers - number of worker threads
+  * container - a container with tasks which will be moved and used as the underlaying task container
 * Deleted copy and move constructors and assignment operators.
-* void push(Functor &&task);
+* void push(Functor &&task);<br>
+Enqueue a task.<br>
+Parameters:
+  * task - the task of type Functor to be enqueued by moving
+* template &lt;typename InputI&gt;<br>void push(InputIt first, InputIt last);<br>
+Enqueue all tasks in the interval [first, last).<br>
+Parameters:
+  * first - iterator to the first task to be enqueued by moving
+  * last - iterator to the element after the last task to be enqueued by moving
+* void worker_count(size_t nWorkers);
