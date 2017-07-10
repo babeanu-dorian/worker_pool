@@ -30,7 +30,7 @@ script:
   - valgrind --error-exitcode=42 --leak-check=full --trace-children=yes ./unit_tests
 
 after_success:
-  - lcov --directory .. --capture --output-file coverage.info
+  - lcov --directory ./CMakeFiles/unit_tests.dir --capture --output-file coverage.info
   - lcov --remove coverage.info 'tests/*' '/external/*' '/usr/*' --output-file coverage.info
   - lcov --list coverage.info
   - coveralls-lcov coverage.info
