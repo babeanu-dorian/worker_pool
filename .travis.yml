@@ -17,7 +17,9 @@ install:
   - export CXX="g++-4.9"
   - sudo update-alternatives --install /usr/bin/gcov gcov /usr/bin/gcov-4.9 90
   - sudo apt-get -qq install valgrind
-  - sudo apt-get install -y lcov
+  - wget http://ftp.de.debian.org/debian/pool/main/l/lcov/lcov_1.11.orig.tar.gz
+  - tar xf lcov_1.11.orig.tar.gz
+  - sudo make -C lcov-1.11/ install
   - gem install coveralls-lcov
 
 before script:
