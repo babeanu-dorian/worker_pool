@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/babeanu-dorian/worker_pool.svg?branch=master)](https://travis-ci.org/babeanu-dorian/worker_pool)
+[![Coverage Status](https://coveralls.io/repos/github/babeanu-dorian/worker_pool/badge.svg??branch=master)](https://coveralls.io/github/babeanu-dorian/worker_pool?branch=master)
 
 # worker_pool
 A group of threads executing tasks from a container. The user has control over the number of threads in in the pool, container type and bahaviour, and the threads' workflow.
