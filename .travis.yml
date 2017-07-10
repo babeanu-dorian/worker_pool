@@ -36,7 +36,7 @@ after_success:
   - lcov --directory ./CMakeFiles/unit_tests.dir --capture --output-file coverage.info
   - lcov --remove coverage.info 'tests/*' '/external/*' '/usr/*' --output-file coverage.info
   - lcov --list coverage.info
-  - coveralls-lcov coverage.info
+  - coveralls-lcov --repo-token=${COVERALL_TOKEN} coverage.info
 
 notifications:
   email: false
